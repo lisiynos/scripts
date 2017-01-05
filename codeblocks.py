@@ -13,7 +13,8 @@ def subdirs(dir_name='.'):  # Все подкаталоги заданного �
     return [name for name in os.listdir(dir_name) if os.path.isdir(dir_name + os.path.sep + name)]
 
 
-BASE_DIR = "C:\\cpp\\04"
+# Здесь можно вписать каталог в котором будет запущена обработка файлов проекта CodeBlocks
+BASE_DIR = "."  # "C:\\cpp\\04"
 sd = subdirs(BASE_DIR)
 
 

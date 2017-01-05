@@ -182,8 +182,8 @@ class TestRating(unittest.TestCase):
 
     def test_filename2link(self):
         """ Разделение команды на участников """
-        self.assertEquals('[main.cpp](main.cpp)', filename2link('.\main.cpp'))
-        self.assertEquals('[a/b.cpp](a/b.cpp)', filename2link('.\\a\\b.cpp'))
+        self.assertEqual('[main.cpp](main.cpp)', filename2link('.\main.cpp'))
+        self.assertEqual('[a/b.cpp](a/b.cpp)', filename2link('.\\a\\b.cpp'))
 
     def test_headers(self):
         self.assertTrue(is_header1("===="))

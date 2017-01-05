@@ -214,10 +214,12 @@ def parse_team_str(team_str):
 def Parse(FileName):
     teams = []
     # Открываем лог контеста на чтение и читаем его целиком в строку
-    for s in open(FileName, "r", encoding='cp866'):
+    f = open(FileName, "r", encoding='cp866')  # Открываем файл
+    for s in f:  # Читаем его построчно
         team_id = parse_team_str(s)
         if team_id:
             teams.append(team_id)
+    f.close()  # Закрываем файл
     return teams
 
 
