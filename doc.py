@@ -2,10 +2,10 @@
 # Генерация README.md по специально размеченным исходникам
 # Добавьте doc.cmd в пути
 import os
+import re
 import sys
 import traceback
 import unittest
-import re
 
 PREFIX = u'//'
 # Стандартный комментарий для документирования
@@ -44,7 +44,9 @@ def is_header2(s):  # Подчёркивание заголовка 2
 
 def process_headers(prev, cur):
     if is_header1(cur):
-        print("## " + prev, file=themes)
+        print('', file=themes)
+        print(prev, file=themes)
+        print('-' * len(prev), file=themes)
     if is_header2(cur):
         print("* " + prev, file=themes)
 
