@@ -1,11 +1,11 @@
-# ~*~ utf-8 ~*~
+# ~*~ coding: utf-8 ~*~
 # Code Blocks project files processing
 import glob
 import os
 import re
-from tempfile import mkstemp
-from shutil import move
 from os import remove, close
+from shutil import move
+from tempfile import mkstemp
 from time import sleep
 
 

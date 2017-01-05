@@ -92,8 +92,8 @@ class Team:
                 self.solved.add(task_id)  # ..задачу в список решённых
                 # if self.id == 24:
                 # print("        team.submit('%s',%s,%s,'%s')" % (task_id, attempt, time, result))
-                # print("        self.assertEquals(%s, len(team.solved))" % len(self.solved))
-                # print("        self.assertEquals(%s, team.time)" % self.time)
+                # print("        self.assertEqual(%s, len(team.solved))" % len(self.solved))
+                # print("        self.assertEqual(%s, team.time)" % self.time)
 
     def __str__(self):
         """ В виде строки """
@@ -133,7 +133,7 @@ def ParseMonitor(filename):
         # Отделяем команду и агрументы
         cmd, arg = parse_cmd(file_line)
         # For unit-tests generating
-        # print "self.assertEquals(%s, parse_cmd('%s'))" % ((cmd, arg), file_line)
+        # print "self.assertEqual(%s, parse_cmd('%s'))" % ((cmd, arg), file_line)
 
         if cmd == "@contest":  # Название контеста
             c.ContestName = arg
@@ -316,122 +316,122 @@ class TestRating(unittest.TestCase):
 
     def test_parse_team_name(self):
         """ Разделение команды на участников """
-        self.assertEquals(['One1', 'Two', 'Three'], parse_team_name("One1, Two, Three"))
-        self.assertEquals(['One1', 'Two', 'Three'], parse_team_name("Team: One1, Two, Three"))
-        self.assertEquals(['Константин Шандуренко', 'Михаил Пирогов', 'Батраков Александр'],
-                          parse_team_name("Команда: Константин Шандуренко, Михаил Пирогов, Батраков Александр "))
+        self.assertEqual(['One1', 'Two', 'Three'], parse_team_name("One1, Two, Three"))
+        self.assertEqual(['One1', 'Two', 'Three'], parse_team_name("Team: One1, Two, Three"))
+        self.assertEqual(['Константин Шандуренко', 'Михаил Пирогов', 'Батраков Александр'],
+                         parse_team_name("Команда: Константин Шандуренко, Михаил Пирогов, Батраков Александр "))
 
     def test_parse_cmd(self):
         """ Разбор команд """
-        self.assertEquals(('@contest', "Лисий Нос, дистанционная сессия, июнь 2014 года"),
-                          parse_cmd('@contest "Лисий Нос, дистанционная сессия, июнь 2014 года"'))
-        self.assertEquals(('@startat', '17.07.2014 11:56:59'), parse_cmd('@startat 17.07.2014 11:56:59'))
-        self.assertEquals(('@contlen', 100500), parse_cmd('@contlen 100500'))
-        self.assertEquals(('@now', 1571182), parse_cmd('@now 1571182'))
-        self.assertEquals(('@state', 'RUNNING'), parse_cmd('@state RUNNING'))
-        self.assertEquals(('@freeze', 100500), parse_cmd('@freeze 100500'))
-        self.assertEquals(('@problems', 26), parse_cmd('@problems 26'))
-        self.assertEquals(('@teams', 31), parse_cmd('@teams 31'))
-        self.assertEquals(('@state', 'OVER'), parse_cmd('@state OVER'))
-        self.assertEquals(('@p', ("A", "Соревнование картингистов", 20, 0)),
-                          parse_cmd('@p A,Соревнование картингистов,20,0'))
-        self.assertEquals(('@t', (14, 0, 1, "Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)")),
-                          parse_cmd('@t 14,0,1,"Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)"'))
-        self.assertEquals(('@t', ("XX", "YY", 1, "Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)")),
-                          parse_cmd('@t XX,"YY",1,"Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)"'))
-        self.assertEquals(('@p', ('O', 'LEGO', 20, 0)), parse_cmd('@p O,LEGO,20,0'))
-        self.assertEquals(('@s', ('J6', 'A', 1, 505, '--', 11)), parse_cmd('@s J6,A,1,505,--,11'))
-        self.assertEquals(('@s', ('J6', 'A', 1, 505, '--', 11)), parse_cmd('@s  J6 , A , 1 , 505 , -- , 11  '))
+        self.assertEqual(('@contest', "Лисий Нос, дистанционная сессия, июнь 2014 года"),
+                         parse_cmd('@contest "Лисий Нос, дистанционная сессия, июнь 2014 года"'))
+        self.assertEqual(('@startat', '17.07.2014 11:56:59'), parse_cmd('@startat 17.07.2014 11:56:59'))
+        self.assertEqual(('@contlen', 100500), parse_cmd('@contlen 100500'))
+        self.assertEqual(('@now', 1571182), parse_cmd('@now 1571182'))
+        self.assertEqual(('@state', 'RUNNING'), parse_cmd('@state RUNNING'))
+        self.assertEqual(('@freeze', 100500), parse_cmd('@freeze 100500'))
+        self.assertEqual(('@problems', 26), parse_cmd('@problems 26'))
+        self.assertEqual(('@teams', 31), parse_cmd('@teams 31'))
+        self.assertEqual(('@state', 'OVER'), parse_cmd('@state OVER'))
+        self.assertEqual(('@p', ("A", "Соревнование картингистов", 20, 0)),
+                         parse_cmd('@p A,Соревнование картингистов,20,0'))
+        self.assertEqual(('@t', (14, 0, 1, "Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)")),
+                         parse_cmd('@t 14,0,1,"Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)"'))
+        self.assertEqual(('@t', ("XX", "YY", 1, "Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)")),
+                         parse_cmd('@t XX,"YY",1,"Пасечник Любовь Ивановна (Выборг, СОШ №7, 10)"'))
+        self.assertEqual(('@p', ('O', 'LEGO', 20, 0)), parse_cmd('@p O,LEGO,20,0'))
+        self.assertEqual(('@s', ('J6', 'A', 1, 505, '--', 11)), parse_cmd('@s J6,A,1,505,--,11'))
+        self.assertEqual(('@s', ('J6', 'A', 1, 505, '--', 11)), parse_cmd('@s  J6 , A , 1 , 505 , -- , 11  '))
 
     def test_ACM(self):
         team = Team()
         team.submit('A', 1, 260987, 'OK')
-        self.assertEquals(1, len(team.solved))
-        self.assertEquals(4350, team.time)
+        self.assertEqual(1, len(team.solved))
+        self.assertEqual(4350, team.time)
         team.submit('P', 1, 295819, 'WA')
-        self.assertEquals(1, len(team.solved))
-        self.assertEquals(4350, team.time)
+        self.assertEqual(1, len(team.solved))
+        self.assertEqual(4350, team.time)
         team.submit('P', 2, 299330, 'WA')
-        self.assertEquals(1, len(team.solved))
-        self.assertEquals(4350, team.time)
+        self.assertEqual(1, len(team.solved))
+        self.assertEqual(4350, team.time)
         team.submit('B', 1, 383935, 'OK')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(10749, team.time)
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(10749, team.time)
         # После успешной отправки последующие игнорируются
         team.submit('B', 1, 384935, 'WA')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(10749, team.time)
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(10749, team.time)
         team.submit('C', 1, 385629, 'OK')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(17176, team.time)
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(17176, team.time)
         team.submit('D', 1, 451188, 'OK')
-        self.assertEquals(4, len(team.solved))
-        self.assertEquals(24696, team.time)
+        self.assertEqual(4, len(team.solved))
+        self.assertEqual(24696, team.time)
         team.submit('M', 1, 453503, 'OK')
-        self.assertEquals(5, len(team.solved))
-        self.assertEquals(32254, team.time)
+        self.assertEqual(5, len(team.solved))
+        self.assertEqual(32254, team.time)
 
     def test_acm2(self):
         """ Regression test for ACM """
         team = Team()
         team.submit('jm140721_ln.dat#B', 1, 33789, 'OK')
-        self.assertEquals(1, len(team.solved))
-        self.assertEquals(563, team.time)
-        self.assertEquals(100, team.score())
+        self.assertEqual(1, len(team.solved))
+        self.assertEqual(563, team.time)
+        self.assertEqual(100, team.score())
         team.submit('jm140721_ln.dat#A', 1, 39547, 'OK')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(1222, team.time)
-        self.assertEquals(200, team.score())
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(1222, team.time)
+        self.assertEqual(200, team.score())
         team.submit('jm140721_ln.dat#E', 1, 43191, 'TL')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(1222, team.time)
-        self.assertEquals(200, team.score())
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(1222, team.time)
+        self.assertEqual(200, team.score())
         team.submit('jm140721_ln.dat#E', 2, 43412, 'TL')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(1222, team.time)
-        self.assertEquals(200, team.score())
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(1222, team.time)
+        self.assertEqual(200, team.score())
         team.submit('jm140721_ln.dat#E', 3, 43921, 'TL')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(1222, team.time)
-        self.assertEquals(200, team.score())
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(1222, team.time)
+        self.assertEqual(200, team.score())
         team.submit('jm140721_ln.dat#E', 4, 44488, 'TL')
-        self.assertEquals(2, len(team.solved))
-        self.assertEquals(1222, team.time)
+        self.assertEqual(2, len(team.solved))
+        self.assertEqual(1222, team.time)
         team.submit('jm140721_ln.dat#H', 1, 47514, 'OK')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(2014, team.time)
-        self.assertEquals(300, team.score())
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(2014, team.time)
+        self.assertEqual(300, team.score())
         team.submit('jm140721_ln.dat#I', 1, 51104, 'RT')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(2014, team.time)
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(2014, team.time)
         team.submit('jm140721_ln.dat#I', 2, 51148, 'RT')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(2014, team.time)
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(2014, team.time)
         team.submit('jm140721_ln.dat#I', 3, 51959, 'RT')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(2014, team.time)
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(2014, team.time)
         team.submit('jm140721_ln.dat#I', 4, 72829, 'RT')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(2014, team.time)
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(2014, team.time)
         team.submit('jm140721_ln.dat#I', 5, 72979, 'RT')
-        self.assertEquals(3, len(team.solved))
-        self.assertEquals(2014, team.time)
+        self.assertEqual(3, len(team.solved))
+        self.assertEqual(2014, team.time)
 
     def test_IOI(self):
         """ Работа в IOI-режиме """
         team = Team()
-        self.assertEquals(0, team.score())
-        self.assertEquals(0, len(team.solved))
+        self.assertEqual(0, team.score())
+        self.assertEqual(0, len(team.solved))
         team.submit('C', 1, 43261, 100)
-        self.assertEquals(100, team.score())
-        self.assertEquals(1, len(team.solved))
+        self.assertEqual(100, team.score())
+        self.assertEqual(1, len(team.solved))
         # Следующая попытка хуже :)
         team.submit('C', 1, 43261, 98)
-        self.assertEquals(98, team.score())
-        self.assertEquals(1, len(team.solved))
+        self.assertEqual(98, team.score())
+        self.assertEqual(1, len(team.solved))
         team.submit('D', 1, 43261, 200)
-        self.assertEquals(298, team.score())
-        self.assertEquals(2, len(team.solved))
+        self.assertEqual(298, team.score())
+        self.assertEqual(2, len(team.solved))
 
     def test_ignore_team(self):
         """ Кто не должен войти в рейтинг """
@@ -447,17 +447,17 @@ class TestRating(unittest.TestCase):
 
     def test_reporter(self):
         report = Reporter(False, [])
-        self.assertEquals(('№', 'Фамилия Имя Отчество', 'Решено задач', 'Штрафное время'), report.column_headers())
+        self.assertEqual(('№', 'Фамилия Имя Отчество', 'Решено задач', 'Штрафное время'), report.column_headers())
 
     def test_filename_to_date(self):
-        self.assertEquals("22.07", filename_to_date("jm140722_ln.dat"))
+        self.assertEqual("22.07", filename_to_date("jm140722_ln.dat"))
 
     def test_parse_teams(self):
-        self.assertEquals('53', parse_team_str(
+        self.assertEqual('53', parse_team_str(
             '  teamX (53, "Иванов Иван Иванович", "pass")'))
         teams = Parse('data/teams_y.cfg')
-        self.assertEquals(['31', '38', '40'],
-                          sorted(teams))
+        self.assertEqual(['31', '38', '40'],
+                         sorted(teams))
 
 
 if __name__ == '__main__':

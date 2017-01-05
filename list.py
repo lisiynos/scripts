@@ -75,7 +75,7 @@ if len(tasks) == 0:
         exit(0)
     orderF = open(orderFile, 'w')
     for task in filter_tasks(tasks):
-        orderF.write("%s\n" % task)
+        orderF.write(u"%s\n" % task)
     orderF.close()
 
 if len(tasks) == 0:
@@ -277,12 +277,12 @@ class Tests(unittest.TestCase):
     """ Модульные тесты для функций и классов """
 
     def test_parse_problem_text(self):
-        self.assertEquals([('Сообщение об ошибке', 'errmess.in', 'errmess.out', '2', '256')],
-                          parse_statement("""\\begin{problem}{Сообщение об ошибке}{errmess.in}{errmess.out}
+        self.assertEqual([('Сообщение об ошибке', 'errmess.in', 'errmess.out', '2', '256')],
+                         parse_statement("""\\begin{problem}{Сообщение об ошибке}{errmess.in}{errmess.out}
 {2 секунды}{256 мебибайт}{}
 """))
-        self.assertEquals([('Сообщение об ошибке', 'errmess2.in', 'errmess2.out', '2', '128')],
-                          parse_statement("""\\\gdef\\thisproblemauthor{Иван Казменко}
+        self.assertEqual([('Сообщение об ошибке', 'errmess2.in', 'errmess2.out', '2', '128')],
+                         parse_statement("""\\\gdef\\thisproblemauthor{Иван Казменко}
 \\gdef\\thisproblemdeveloper{Иван Казменко}
 \\begin{problem}{Сообщение об ошибке}
 {errmess2.in}   {errmess2.out}
