@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import unittest
+from io import open
 from random import randrange
 from string import Template
 
@@ -17,6 +18,8 @@ BALLS = 100
 
 # По-умолчанию начинаем с текущего каталога
 os.chdir(".")
+
+
 # Но можно выполнить для любого каталога
 # os.chdir("D:/denis/testsys/150321_ln/problems")
 
@@ -40,6 +43,7 @@ task_cfg = """InputFile := $TaskID.in;
 OutputFile := $TaskID.out;
 CheckResult := true;
 """
+
 
 # solution = ReadTemplate("solution.dpr")
 # problem = ReadTemplate("problem.tex")
@@ -237,7 +241,6 @@ for t in l:
     Letter += 1
 problems += "];"
 problems_acm += "];"
-
 
 f = open('problems.cfg', 'w', encoding='cp866')
 f.write(problems)
