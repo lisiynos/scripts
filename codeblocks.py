@@ -3,6 +3,7 @@
 import glob
 import os
 import re
+import unittest
 from os import remove, close
 from shutil import move
 from tempfile import mkstemp
@@ -11,11 +12,6 @@ from time import sleep
 
 def subdirs(dir_name='.'):  # Все подкаталоги заданного каталога
     return [name for name in os.listdir(dir_name) if os.path.isdir(dir_name + os.path.sep + name)]
-
-
-# Здесь можно вписать каталог в котором будет запущена обработка файлов проекта CodeBlocks
-BASE_DIR = os.getcwd()  # "C:\\cpp\\04"
-sd = subdirs(BASE_DIR)
 
 
 def replace(file_path, pattern, subst):
@@ -54,7 +50,16 @@ def process_dir(dir_name):
         replace(fn, 'output="bin/Release/\S+"', 'output="bin/Release/' + dir_name + '"')
 
 
-# Берём все подкаталоги
-for d in sd:
-    print(d)
-    process_dir(d)
+if __name__ == "__main__":
+    # Здесь можно вписать каталог в котором будет запущена обработка файлов проекта CodeBlocks
+    BASE_DIR = os.getcwd()  # "C:\\cpp\\04"
+    sd = subdirs(BASE_DIR)
+
+    # Берём все подкаталоги
+    for d in sd:
+        print(d)
+        process_dir(d)
+
+
+class CodeBlocksTests(unittest.TestCase):
+    pass
