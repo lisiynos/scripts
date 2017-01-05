@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import print_function
+
 import functools
+import sys
 from os.path import isdir
 
 from rating import *
-
 
 TITLE = """Рейтинг по учебно-тренировочным сборам по информатике 2015 года (16-21 марта)"""
 

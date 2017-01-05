@@ -1,15 +1,17 @@
 # ~*~ coding: utf-8 ~*~
 # Генерация README.md по специально размеченным исходникам
 # Добавьте doc.cmd в пути
+from __future__ import print_function
+
 import os
 import re
 import sys
 import traceback
 import unittest
 
-PREFIX = u'//'
+PREFIX = '//'
 # Стандартный комментарий для документирования
-PREFIX2 = u'///'
+PREFIX2 = '///'
 
 ROOT_DIR = '.\\'
 
